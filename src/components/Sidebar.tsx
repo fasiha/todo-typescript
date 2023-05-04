@@ -12,7 +12,12 @@ const UserHeader = () => {
   );
 };
 
-const Sidebar = () => {
+interface SideProps {
+  categories: Array<string>;
+}
+
+const Sidebar = (props: SideProps) => {
+  const { categories } = props;
   return (
     <>
       <UserHeader />
@@ -20,9 +25,9 @@ const Sidebar = () => {
         <div className="mylist">
           <h3>My Lists</h3>
           <ul>
-            <li>Personal</li>
-            <li>Work</li>
-            <li>Hobby</li>
+            {categories.map((category, i) => {
+              return <li key={i}>{category}</li>;
+            })}
           </ul>
         </div>
       </div>
