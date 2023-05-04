@@ -1,0 +1,17 @@
+.folderwindow {
+  background-color: white;
+  height: 80vh;
+  width: 30vw;
+  min-width: 300px;
+  max-width: 450px;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.topicheader {
+  background-color: white;
+  width: 250px;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 15px;
+}

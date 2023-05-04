@@ -5,3 +5,8 @@ body {
   background-color: aliceblue;
   overflow-y: hidden;
 }
+
+.App {
+  display: flex;
+  flex-direction: row;
+}
