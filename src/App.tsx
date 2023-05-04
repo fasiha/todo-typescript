@@ -1,7 +1,7 @@
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 
 // sample data
 type Category = {
@@ -12,7 +12,9 @@ type Todo = {
   name: string;
   note: string;
 };
-const sample: Array<Category> = [
+
+export type Data = Array<Category>;
+const sample: Data = [
   {
     category: "Personal",
     todo: [
@@ -41,10 +43,9 @@ const sample: Array<Category> = [
 function App() {
   const [data, setData] = useState(sample);
   const categories: Array<string> = data.map((d) => d["category"]);
-  console.log(categories);
   return (
     <div className="App">
-      <Sidebar categories={categories} />
+      <Sidebar data={data} setData={setData} categories={categories} />
       <Main />
     </div>
   );

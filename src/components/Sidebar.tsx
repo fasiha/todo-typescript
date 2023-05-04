@@ -1,5 +1,9 @@
 import "./sidebar.css";
 import avatar from "../images/avatar.png";
+import { Data } from "../App";
+import React, { Dispatch, SetStateAction } from "react";
+import AddList from "./AddList";
+
 const UserHeader = () => {
   return (
     <div className="userheader">
@@ -14,19 +18,31 @@ const UserHeader = () => {
 
 interface SideProps {
   categories: Array<string>;
+  data: Data;
+  setData: Dispatch<SetStateAction<Data>>;
 }
 
 const Sidebar = (props: SideProps) => {
-  const { categories } = props;
+  const { data, setData } = props;
+  const categories = data.map((d) => d.category);
+  const numTodo = data.map((d) => d.todo.length);
   return (
     <>
       <UserHeader />
       <div className="sidebar">
         <div className="mylist">
-          <h3>My Lists</h3>
+          <div className="mylistheader">
+            <h3>My Lists</h3>
+            <AddList />
+          </div>
           <ul>
             {categories.map((category, i) => {
-              return <li key={i}>{category}</li>;
+              return (
+                <li key={i} className="categorylist">
+                  <div className="categoryli">{category}</div>{" "}
+                  <div className="numtodo">{numTodo[i]}</div>
+                </li>
+              );
             })}
           </ul>
         </div>

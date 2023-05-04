@@ -8,7 +8,7 @@ const FolderWindow: React.FC = () => {
   return (
     <div className="">
       <TopicHeader />
-      <div className="folderwindow">Hello</div>;
+      <div className="folderwindow">Hello</div>
     </div>
   );
 };
