@@ -1,4 +1,7 @@
 body {
   background-image: url("./images/fixed.png");
   background-repeat: no-repeat;
+  background-position: right;
+  background-color: aliceblue;
+  overflow-y: hidden;
 }
