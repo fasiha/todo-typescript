@@ -4,7 +4,7 @@ import Main from "./components/Main";
 import { useState, Dispatch, SetStateAction } from "react";
 
 // sample data
-type Category = {
+export type Category = {
   category: string;
   todo: Array<Todo>;
 };

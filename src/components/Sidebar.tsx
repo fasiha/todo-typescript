@@ -33,7 +33,7 @@ const Sidebar = (props: SideProps) => {
         <div className="mylist">
           <div className="mylistheader">
             <h3>My Lists</h3>
-            <AddList />
+            <AddList setData={setData} />
           </div>
           <ul>
             {categories.map((category, i) => {
