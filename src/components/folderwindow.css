@@ -9,6 +9,18 @@
   position: relative;
 }
 
+.todowindow {
+  background-color: white;
+  height: 80vh;
+  width: 30vw;
+  top: 35px;
+  min-width: 300px;
+  max-width: 450px;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+}
+
 .topicheader {
   background-color: white;
   width: 250px;
@@ -81,4 +93,39 @@
 
 .inputdiv input:focus {
   border: none;
+}
+
+.content {
+  margin-top: 20px;
+}
+
+.nameinput {
+  border: none;
+  font-size: 20px;
+  width: 80%;
+  font-weight: 600;
+}
+
+.nameinput:focus {
+  border: none;
+  outline: none;
+}
+
+#note {
+  margin-top: 10px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 16px;
+}
+
+textarea {
+  width: 95%;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+textarea:focus {
+  border: none;
+  outline: none;
+  resize: none;
 }

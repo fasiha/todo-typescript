@@ -1,4 +1,5 @@
 import FolderWindow from "./FolderWindow";
+import TodoWindow from "./TodoWindow";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import "./main.css";
 import { Data } from "../App";
@@ -21,6 +22,12 @@ const Main = (props: SideProps) => {
         selected={selected}
         selected2={selected2}
         setSelected2={setSelected2}
+      />
+      <TodoWindow
+        data={data}
+        setData={setData}
+        selected={selected}
+        selected2={selected2}
       />
     </div>
   );

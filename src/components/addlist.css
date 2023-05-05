@@ -13,3 +13,11 @@
   outline: none;
   border: none;
 }
+
+.headertodo {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(128, 128, 128, 0.541);
+  position: absolute;
+  top: 10px;
+}
