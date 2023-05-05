@@ -42,12 +42,18 @@ const sample: Data = [
 
 function App() {
   const [data, setData] = useState(sample);
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(-1);
   const categories: Array<string> = data.map((d) => d["category"]);
   return (
     <div className="App">
-      <Sidebar data={data} setData={setData} categories={categories} />
-      <Main data={data} setData={setData} />
+      <Sidebar
+        data={data}
+        setData={setData}
+        selected={selected}
+        setSelected={setSelected}
+        categories={categories}
+      />
+      <Main data={data} setData={setData} selected={selected} />
     </div>
   );
 }

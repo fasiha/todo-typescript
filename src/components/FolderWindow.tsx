@@ -2,17 +2,15 @@ import React, { Dispatch, SetStateAction } from "react";
 import "./folderwindow.css";
 import { Data } from "../App";
 import produce from "immer";
-const TopicHeader: React.FC = () => {
-  return <div className="topicheader">Personal</div>;
-};
 
 interface SideProps {
   data: Data;
   setData: Dispatch<SetStateAction<Data>>;
+  selected: number;
 }
 
 const FolderWindow = (props: SideProps) => {
-  const { data, setData } = props;
+  const { data, setData, selected } = props;
   const selectTodo = (e: any): void => {
     const parent = e.target.parentNode;
     const button = e.target;
@@ -27,7 +25,7 @@ const FolderWindow = (props: SideProps) => {
       parent.removeChild(e.target);
       setData(
         produce((draft: Data) => {
-          draft[0]["todo"].splice(Number(parent.id), 1);
+          draft[selected]["todo"].splice(Number(parent.id), 1);
         })
       );
     });
@@ -45,12 +43,18 @@ const FolderWindow = (props: SideProps) => {
       parent.appendChild(deleteButton);
     }
   };
+  const TopicHeader: React.FC = () => {
+    return <div className="topicheader">{data[selected].category}</div>;
+  };
+  if (selected == -1) {
+    return <></>;
+  }
   return (
     <div className="">
       <TopicHeader />
       <div className="folderwindow">
         <ul className="todo">
-          {data[0].todo.map((todo, i) => {
+          {data[selected].todo.map((todo, i) => {
             return (
               <li key={i} id={String(i)}>
                 <button className="check" onClick={selectTodo}></button>

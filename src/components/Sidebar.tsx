@@ -20,12 +20,24 @@ interface SideProps {
   categories: Array<string>;
   data: Data;
   setData: Dispatch<SetStateAction<Data>>;
+  selected: number;
+  setSelected: Dispatch<SetStateAction<number>>;
 }
 
 const Sidebar = (props: SideProps) => {
-  const { data, setData } = props;
+  const { data, setData, selected, setSelected } = props;
   const categories = data.map((d) => d.category);
   const numTodo = data.map((d) => d.todo.length);
+
+  const selectNum = (e: any): void => {
+    setSelected(Number(e.currentTarget.id));
+  };
+
+  const selectedstyle = {
+    backgroundColor: "rgba(116, 116, 231, 0.527)",
+    color: "white",
+  };
+
   return (
     <>
       <UserHeader />
@@ -37,12 +49,32 @@ const Sidebar = (props: SideProps) => {
           </div>
           <ul>
             {categories.map((category, i) => {
-              return (
-                <li key={i} className="categorylist">
-                  <div className="categoryli">{category}</div>{" "}
-                  <div className="numtodo">{numTodo[i]}</div>
-                </li>
-              );
+              if (i === selected) {
+                return (
+                  <li
+                    key={i}
+                    id={String(i)}
+                    className="categorylist"
+                    onClick={selectNum}
+                    style={selectedstyle}
+                  >
+                    <div className="categoryli">{category}</div>{" "}
+                    <div className="numtodo">{numTodo[i]}</div>
+                  </li>
+                );
+              } else {
+                return (
+                  <li
+                    key={i}
+                    id={String(i)}
+                    className="categorylist"
+                    onClick={selectNum}
+                  >
+                    <div className="categoryli">{category}</div>{" "}
+                    <div className="numtodo">{numTodo[i]}</div>
+                  </li>
+                );
+              }
             })}
           </ul>
         </div>

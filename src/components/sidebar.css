@@ -87,5 +87,15 @@
 
 .categorylist {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
   gap: 20px;
+  width: 150px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.categorylist:hover {
+  background-color: rgba(192, 192, 192, 0.329);
 }
