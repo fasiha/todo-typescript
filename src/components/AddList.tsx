@@ -23,6 +23,7 @@ function AddList(props: AddProps) {
       category,
       todo: [],
     };
+    if (category.length === 0) return;
     setData(
       produce((draft) => {
         draft.push(newCat);
