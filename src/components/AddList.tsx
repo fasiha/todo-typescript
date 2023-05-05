@@ -44,6 +44,7 @@ function AddList(props: AddProps) {
           <input
             onChange={(e) => setCategory(e.target.value)}
             value={category}
+            className="inputlist"
           ></input>
         </Modal.Body>
         <Modal.Footer>

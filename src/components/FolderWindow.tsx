@@ -1,16 +1,19 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import "./folderwindow.css";
-import { Data } from "../App";
+import { Data, Todo } from "../App";
 import produce from "immer";
 
 interface SideProps {
   data: Data;
   setData: Dispatch<SetStateAction<Data>>;
   selected: number;
+  selected2: number;
+  setSelected2: Dispatch<SetStateAction<number>>;
 }
 
 const FolderWindow = (props: SideProps) => {
-  const { data, setData, selected } = props;
+  const { data, setData, selected, selected2, setSelected2 } = props;
+  const [newTodo, setNewTodo] = useState("");
   const selectTodo = (e: any): void => {
     const parent = e.target.parentNode;
     const button = e.target;
@@ -43,6 +46,20 @@ const FolderWindow = (props: SideProps) => {
       parent.appendChild(deleteButton);
     }
   };
+
+  const addTodo = () => {
+    const newObj: Todo = {
+      name: newTodo,
+      note: "",
+    };
+    setData(
+      produce((draft) => {
+        draft[selected].todo.unshift(newObj);
+      })
+    );
+    setNewTodo("");
+  };
+
   const TopicHeader: React.FC = () => {
     return <div className="topicheader">{data[selected].category}</div>;
   };
@@ -63,6 +80,15 @@ const FolderWindow = (props: SideProps) => {
             );
           })}
         </ul>
+        <div className="inputdiv">
+          <hr />
+          <input
+            type="text"
+            onChange={(e) => setNewTodo(e.target.value)}
+            value={newTodo}
+          ></input>{" "}
+          <button onClick={addTodo}>&#10000;</button>
+        </div>
       </div>
     </div>
   );

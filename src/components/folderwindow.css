@@ -6,6 +6,7 @@
   max-width: 450px;
   border-radius: 20px;
   padding: 20px;
+  position: relative;
 }
 
 .topicheader {
@@ -51,4 +52,33 @@
   justify-content: center;
   border-radius: 50%;
   padding: 10px;
+}
+
+.inputdiv {
+  position: absolute;
+  height: 40px;
+  width: 100%;
+  bottom: 5px;
+  left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.inputdiv input {
+  border-radius: 20px;
+  width: 80%;
+  min-width: 200px;
+  padding-left: 10px;
+  border: none;
+  background-color: rgba(224, 217, 217, 0.39);
+}
+
+.inputdiv button {
+  border-radius: 50%;
+  border: solid 1px black;
+}
+
+.inputdiv input:focus {
+  border: none;
 }

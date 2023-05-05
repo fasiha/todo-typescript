@@ -8,7 +8,7 @@ export type Category = {
   category: string;
   todo: Array<Todo>;
 };
-type Todo = {
+export type Todo = {
   name: string;
   note: string;
 };

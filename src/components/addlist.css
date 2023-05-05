@@ -1,15 +1,15 @@
-input {
+.inputlist {
   border: none;
   padding: 5px;
   border-radius: 6px;
 }
 
-input:hover {
+.inputlist:hover {
   background-color: rgba(199, 195, 195, 0.253);
   border: none;
 }
 
-input:focus {
+.inputlist:focus {
   outline: none;
   border: none;
 }
