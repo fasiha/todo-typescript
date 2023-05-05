@@ -22,15 +22,17 @@ interface SideProps {
   setData: Dispatch<SetStateAction<Data>>;
   selected: number;
   setSelected: Dispatch<SetStateAction<number>>;
+  setSelected2: Dispatch<SetStateAction<number>>;
 }
 
 const Sidebar = (props: SideProps) => {
-  const { data, setData, selected, setSelected } = props;
+  const { data, setData, selected, setSelected, setSelected2 } = props;
   const categories = data.map((d) => d.category);
   const numTodo = data.map((d) => d.todo.length);
 
   const selectNum = (e: any): void => {
     setSelected(Number(e.currentTarget.id));
+    setSelected2(0);
   };
 
   const selectedstyle = {

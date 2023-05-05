@@ -43,6 +43,7 @@ const sample: Data = [
 function App() {
   const [data, setData] = useState(sample);
   const [selected, setSelected] = useState(-1);
+  const [selected2, setSelected2] = useState(0);
   const categories: Array<string> = data.map((d) => d["category"]);
   return (
     <div className="App">
@@ -52,8 +53,15 @@ function App() {
         selected={selected}
         setSelected={setSelected}
         categories={categories}
+        setSelected2={setSelected2}
       />
-      <Main data={data} setData={setData} selected={selected} />
+      <Main
+        data={data}
+        setData={setData}
+        selected={selected}
+        selected2={selected2}
+        setSelected2={setSelected2}
+      />
     </div>
   );
 }

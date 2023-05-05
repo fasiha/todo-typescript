@@ -8,11 +8,12 @@ interface SideProps {
   data: Data;
   setData: Dispatch<SetStateAction<Data>>;
   selected: number;
+  selected2: number;
+  setSelected2: Dispatch<SetStateAction<number>>;
 }
 
 const Main = (props: SideProps) => {
-  const { data, setData, selected } = props;
-  const [selected2, setSelected2] = useState(0);
+  const { data, setData, selected, selected2, setSelected2 } = props;
 
   return (
     <div className="main">
