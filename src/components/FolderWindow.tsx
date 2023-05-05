@@ -46,18 +46,26 @@ const FolderWindow = (props: SideProps) => {
       parent.appendChild(deleteButton);
     }
   };
+  const selectTodo2 = (e: any) => {
+    setSelected2(Number(e.currentTarget.id));
+  };
 
   const addTodo = () => {
     const newObj: Todo = {
       name: newTodo,
       note: "",
     };
+    if (newTodo == "") return;
     setData(
       produce((draft) => {
         draft[selected].todo.unshift(newObj);
       })
     );
     setNewTodo("");
+  };
+  const selectedstyle = {
+    backgroundColor: "rgba(116, 116, 231, 0.527)",
+    color: "white",
   };
 
   const TopicHeader: React.FC = () => {
@@ -72,12 +80,26 @@ const FolderWindow = (props: SideProps) => {
       <div className="folderwindow">
         <ul className="todo">
           {data[selected].todo.map((todo, i) => {
-            return (
-              <li key={i} id={String(i)}>
-                <button className="check" onClick={selectTodo}></button>
-                <span className="todoname">{todo.name}</span>
-              </li>
-            );
+            if (i === selected2) {
+              return (
+                <li
+                  key={i}
+                  id={String(i)}
+                  style={selectedstyle}
+                  onClick={selectTodo2}
+                >
+                  <button className="check" onClick={selectTodo}></button>
+                  <span className="todoname">{todo.name}</span>
+                </li>
+              );
+            } else {
+              return (
+                <li key={i} id={String(i)} onClick={selectTodo2}>
+                  <button className="check" onClick={selectTodo}></button>
+                  <span className="todoname">{todo.name}</span>
+                </li>
+              );
+            }
           })}
         </ul>
         <div className="inputdiv">
@@ -87,7 +109,9 @@ const FolderWindow = (props: SideProps) => {
             onChange={(e) => setNewTodo(e.target.value)}
             value={newTodo}
           ></input>{" "}
-          <button onClick={addTodo}>&#10000;</button>
+          <button className="addtodo" onClick={addTodo}>
+            &#10000;
+          </button>
         </div>
       </div>
     </div>
