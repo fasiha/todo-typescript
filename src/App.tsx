@@ -20,7 +20,7 @@ const sample: Data = [
     todo: [
       {
         name: "Walk a dog",
-        note: "Kevin needs a extra walk for his weight loss",
+        note: "Kevin needs an extra walk for his weight loss",
       },
       {
         name: "Clean my desk",

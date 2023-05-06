@@ -29,6 +29,7 @@ function AddList(props: AddProps) {
         draft.push(newCat);
       })
     );
+    setCategory("");
     handleClose();
   };
 

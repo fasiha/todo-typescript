@@ -14,8 +14,19 @@ interface SideProps {
 
 const Main = (props: SideProps) => {
   const { data, setData, selected, selected2, setSelected2 } = props;
-  const todo = data[selected].todo[selected2];
-
+  if (data[selected].todo.length == 0) {
+    return (
+      <div className="main">
+        <FolderWindow
+          data={data}
+          setData={setData}
+          selected={selected}
+          selected2={selected2}
+          setSelected2={setSelected2}
+        />
+      </div>
+    );
+  }
   return (
     <div className="main">
       <FolderWindow

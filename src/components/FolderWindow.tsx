@@ -62,6 +62,7 @@ const FolderWindow = (props: SideProps) => {
       })
     );
     setNewTodo("");
+    setSelected2(0);
   };
   const selectedstyle = {
     backgroundColor: "rgba(116, 116, 231, 0.527)",
@@ -71,6 +72,7 @@ const FolderWindow = (props: SideProps) => {
   const TopicHeader: React.FC = () => {
     return <div className="topicheader">{data[selected].category}</div>;
   };
+
   return (
     <div className="">
       <TopicHeader />
