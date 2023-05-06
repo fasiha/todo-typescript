@@ -3,18 +3,7 @@ import avatar from "../images/avatar.png";
 import { Data } from "../App";
 import React, { Dispatch, SetStateAction } from "react";
 import AddList from "./AddList";
-
-const UserHeader = () => {
-  return (
-    <div className="userheader">
-      <img src={avatar}></img>
-      <div className="userinfo">
-        <h3>User</h3>
-        <p>Free Plan</p>
-      </div>
-    </div>
-  );
-};
+import Button from "react-bootstrap/Button";
 
 interface SideProps {
   categories: Array<string>;
@@ -33,6 +22,24 @@ const Sidebar = (props: SideProps) => {
   const selectNum = (e: any): void => {
     setSelected(Number(e.currentTarget.id));
     setSelected2(0);
+  };
+
+  const UserHeader = () => {
+    const saveLocal = () => {
+      localStorage.setItem("data", JSON.stringify(data));
+    };
+    return (
+      <div className="userheader">
+        <img src={avatar}></img>
+        <div className="userinfo">
+          <h3>User</h3>
+          <p>Free Plan</p>
+        </div>
+        <Button variant="outline-info" onClick={saveLocal}>
+          Save
+        </Button>{" "}
+      </div>
+    );
   };
 
   const selectedstyle = {
