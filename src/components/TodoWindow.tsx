@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
 import "./folderwindow.css";
 import { Data, Todo } from "../App";
 import produce from "immer";
@@ -12,24 +12,26 @@ interface SideProps {
 
 const TodoWindow = (props: SideProps) => {
   const { data, setData, selected, selected2 } = props;
-  if (selected === -1) {
-    return <></>;
-  }
   const list = data[selected].category;
   const todo = data[selected].todo[selected2];
-  const name = todo.name;
-  const note = todo.note;
+  const [name, setName] = useState(todo.name);
+  const [note, setNote] = useState(todo.note);
+  useEffect(() => {
+    setName(data[selected].todo[selected2].name);
+    setNote(data[selected].todo[selected2].note);
+  }, [selected, selected2]);
+
   const updateName = (e: any) => {
     setData(
       produce((draft) => {
-        draft[selected].todo[selected2].name = e.target.value;
+        draft[selected].todo[selected2].name = name;
       })
     );
   };
   const updateNote = (e: any) => {
     setData(
       produce((draft) => {
-        draft[selected].todo[selected2].note = e.target.value;
+        draft[selected].todo[selected2].note = note;
       })
     );
   };
@@ -38,14 +40,21 @@ const TodoWindow = (props: SideProps) => {
       <div className="headertodo">MyLists &gt; {list}</div>
       <div className="content">
         <input
-          defaultValue={name}
-          onBlur={updateName}
+          value={name}
           className="nameinput"
+          onBlur={updateName}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
         ></input>
         <div className="notediv">
           <h5 id="note">NOTES</h5>
           <div className="textdiv">
-            <textarea onBlur={updateNote} defaultValue={note}></textarea>
+            <textarea
+              value={note}
+              onBlur={updateNote}
+              onChange={(e) => setNote(e.target.value)}
+            ></textarea>
           </div>
         </div>
       </div>

@@ -14,6 +14,7 @@ interface SideProps {
 
 const Main = (props: SideProps) => {
   const { data, setData, selected, selected2, setSelected2 } = props;
+  const todo = data[selected].todo[selected2];
 
   return (
     <div className="main">

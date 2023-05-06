@@ -71,9 +71,6 @@ const FolderWindow = (props: SideProps) => {
   const TopicHeader: React.FC = () => {
     return <div className="topicheader">{data[selected].category}</div>;
   };
-  if (selected == -1) {
-    return <></>;
-  }
   return (
     <div className="">
       <TopicHeader />

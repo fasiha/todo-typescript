@@ -42,7 +42,7 @@ const sample: Data = [
 
 function App() {
   const [data, setData] = useState(sample);
-  const [selected, setSelected] = useState(-1);
+  const [selected, setSelected] = useState(0);
   const [selected2, setSelected2] = useState(0);
   const categories: Array<string> = data.map((d) => d["category"]);
   return (
