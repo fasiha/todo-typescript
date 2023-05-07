@@ -14,6 +14,8 @@ interface SideProps {
 const FolderWindow = (props: SideProps) => {
   const { data, setData, selected, selected2, setSelected2 } = props;
   const [newTodo, setNewTodo] = useState("");
+
+  //
   const selectTodo = (e: any): void => {
     const parent = e.target.parentNode;
     const button = e.target;
@@ -73,32 +75,42 @@ const FolderWindow = (props: SideProps) => {
     return <div className="topicheader">{data[selected].category}</div>;
   };
 
+  interface todoProps {
+    todo: Todo;
+    index: number;
+  }
+
+  const TodoLi = (props: todoProps) => {
+    const { todo, index } = props;
+    if (index === selected2) {
+      return (
+        <li
+          key={index}
+          id={String(index)}
+          style={selectedstyle}
+          onClick={selectTodo2}
+        >
+          <button className="check" onClick={selectTodo}></button>
+          <span className="todoname">{todo.name}</span>
+        </li>
+      );
+    } else {
+      return (
+        <li key={index} id={String(index)} onClick={selectTodo2}>
+          <button className="check" onClick={selectTodo}></button>
+          <span className="todoname">{todo.name}</span>
+        </li>
+      );
+    }
+  };
+
   return (
     <div className="">
       <TopicHeader />
       <div className="folderwindow">
         <ul className="todo">
           {data[selected].todo.map((todo, i) => {
-            if (i === selected2) {
-              return (
-                <li
-                  key={i}
-                  id={String(i)}
-                  style={selectedstyle}
-                  onClick={selectTodo2}
-                >
-                  <button className="check" onClick={selectTodo}></button>
-                  <span className="todoname">{todo.name}</span>
-                </li>
-              );
-            } else {
-              return (
-                <li key={i} id={String(i)} onClick={selectTodo2}>
-                  <button className="check" onClick={selectTodo}></button>
-                  <span className="todoname">{todo.name}</span>
-                </li>
-              );
-            }
+            return <TodoLi todo={todo} index={i} />;
           })}
         </ul>
         <div className="inputdiv">
