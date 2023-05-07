@@ -2,17 +2,20 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import "./folderwindow.css";
 import { Data, Todo } from "../App";
 import produce from "immer";
+import RemoveList from "./RemoveList";
 
 interface SideProps {
   data: Data;
   setData: Dispatch<SetStateAction<Data>>;
   selected: number;
   selected2: number;
+  setSelected: Dispatch<SetStateAction<number>>;
   setSelected2: Dispatch<SetStateAction<number>>;
 }
 
 const FolderWindow = (props: SideProps) => {
-  const { data, setData, selected, selected2, setSelected2 } = props;
+  const { data, setData, setSelected, selected, selected2, setSelected2 } =
+    props;
   const [newTodo, setNewTodo] = useState("");
 
   //
@@ -72,7 +75,18 @@ const FolderWindow = (props: SideProps) => {
   };
 
   const TopicHeader: React.FC = () => {
-    return <div className="topicheader">{data[selected].category}</div>;
+    return (
+      <div className="topicheader">
+        {data[selected].category}
+        <RemoveList
+          setData={setData}
+          index={selected}
+          setSelected={setSelected}
+          setSelected2={setSelected2}
+          name={data[selected].category}
+        />
+      </div>
+    );
   };
 
   interface todoProps {

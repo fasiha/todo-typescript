@@ -91,6 +91,7 @@ function App() {
         data={data}
         setData={setData}
         selected={selected}
+        setSelected={setSelected}
         selected2={selected2}
         setSelected2={setSelected2}
       />

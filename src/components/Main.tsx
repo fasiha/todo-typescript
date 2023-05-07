@@ -8,12 +8,14 @@ interface SideProps {
   data: Data;
   setData: Dispatch<SetStateAction<Data>>;
   selected: number;
+  setSelected: Dispatch<SetStateAction<number>>;
   selected2: number;
   setSelected2: Dispatch<SetStateAction<number>>;
 }
 
 const Main = (props: SideProps) => {
-  const { data, setData, selected, selected2, setSelected2 } = props;
+  const { data, setData, selected, setSelected, selected2, setSelected2 } =
+    props;
   if (data[selected].todo.length == 0) {
     return (
       <div className="main">
@@ -21,6 +23,7 @@ const Main = (props: SideProps) => {
           data={data}
           setData={setData}
           selected={selected}
+          setSelected={setSelected}
           selected2={selected2}
           setSelected2={setSelected2}
         />
@@ -33,6 +36,7 @@ const Main = (props: SideProps) => {
         data={data}
         setData={setData}
         selected={selected}
+        setSelected={setSelected}
         selected2={selected2}
         setSelected2={setSelected2}
       />
