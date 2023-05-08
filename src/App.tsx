@@ -50,19 +50,6 @@ if (retrievedArray) {
         },
       ],
     },
-    {
-      category: "Travel",
-      todo: [
-        {
-          name: "Get a Passport",
-          note: "Prepare documents to apply for a new passport",
-        },
-        {
-          name: "Book a flight",
-          note: "Need to keep an eye on flight ticket prices around October",
-        },
-      ],
-    },
   ];
 }
 

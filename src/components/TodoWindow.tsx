@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
 import "./folderwindow.css";
 import { Data, Todo } from "../App";
 import produce from "immer";
+import "./todowindow.css";
 
 interface SideProps {
   data: Data;
@@ -51,6 +52,7 @@ const TodoWindow = (props: SideProps) => {
           <h5 id="note">NOTES</h5>
           <div className="textdiv">
             <textarea
+              className="notearea"
               value={note}
               onBlur={updateNote}
               onChange={(e) => setNote(e.target.value)}

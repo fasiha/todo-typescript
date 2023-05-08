@@ -124,7 +124,7 @@ const FolderWindow = (props: SideProps) => {
       <div className="folderwindow">
         <ul className="todo">
           {data[selected].todo.map((todo, i) => {
-            return <TodoLi todo={todo} index={i} />;
+            return <TodoLi todo={todo} key={i} index={i} />;
           })}
         </ul>
         <div className="inputdiv">
