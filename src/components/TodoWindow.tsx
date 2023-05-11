@@ -15,8 +15,8 @@ const TodoWindow = (props: SideProps) => {
   const { data, setData, selected, selected2 } = props;
   const list = data[selected].category;
   const todo = data[selected].todo[selected2];
-  const [name, setName] = useState(todo.name);
-  const [note, setNote] = useState(todo.note);
+  const [name, setName] = useState(todo?.name);
+  const [note, setNote] = useState(todo?.note);
   useEffect(() => {
     setName(data[selected].todo[selected2].name);
     setNote(data[selected].todo[selected2].note);

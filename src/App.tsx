@@ -11,6 +11,7 @@ export type Category = {
 export type Todo = {
   name: string;
   note: string;
+  done?: boolean;
 };
 
 export type Data = Array<Category>;

@@ -55,7 +55,7 @@
   align-items: center;
 }
 
-.todo li:hover {
+.todo li:hover:not(.selectedstyle) {
   background-color: rgba(192, 192, 192, 0.329);
 }
 
@@ -140,4 +140,9 @@ textarea:focus {
   border: none;
   outline: none;
   resize: none;
+}
+
+.selectedstyle {
+  background-color: rgba(116, 116, 231, 0.527);
+  color: white;
 }
