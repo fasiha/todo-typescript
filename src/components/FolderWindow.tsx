@@ -50,36 +50,24 @@ const TodoLi = (props: todoProps) => {
     setSelected2(Number(e.currentTarget.id));
   };
   if (index === selected2) {
-    if (todo.done) {
-      return (
-        <li
-          key={index}
-          id={String(index)}
-          onClick={selectTodo2}
-          className="selectedstyle"
-        >
-          <button className="check" onClick={toggleDone}>
-            &#10003;
-          </button>
-          <span className="todoname linethrough">{todo.name}</span>
-          <button className="deletebutton" onClick={deleteTodo}>
-            &#128465;
-          </button>
-        </li>
-      );
-    } else {
-      return (
-        <li
-          key={index}
-          id={String(index)}
-          onClick={selectTodo2}
-          className="selectedstyle"
-        >
-          <button className="check" onClick={toggleDone}></button>
-          <span className="todoname">{todo.name}</span>
-        </li>
-      );
-    }
+    return (
+      <li
+        key={index}
+        id={String(index)}
+        onClick={selectTodo2}
+        className="selectedstyle"
+      >
+        <button className="check" onClick={toggleDone}>
+          {todo.done ? "✓" : undefined}
+        </button>
+        <span className={todo.done ? "todoname linethrough" : "todoname"}>
+          {todo.name}
+        </span>
+        <button className="deletebutton" onClick={deleteTodo}>
+          &#128465;
+        </button>
+      </li>
+    );
   } else {
     if (todo.done) {
       return (
