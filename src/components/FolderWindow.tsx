@@ -84,7 +84,9 @@ const TodoLi = (props: todoProps) => {
     if (todo.done) {
       return (
         <li key={index} id={String(index)} onClick={selectTodo2}>
-          <button className="check" onClick={toggleDone}></button>
+          <button className="check" onClick={toggleDone}>
+            &#10003;
+          </button>
           <span className="todoname lignthrough">{todo.name}</span>
           <button className="deletebutton" onClick={deleteTodo}>
             &#128465;
