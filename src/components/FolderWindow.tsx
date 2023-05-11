@@ -18,7 +18,137 @@ const FolderWindow = (props: SideProps) => {
     props;
   const [newTodo, setNewTodo] = useState("");
 
-  //
+  const addTodo = () => {
+    const newObj: Todo = {
+      name: newTodo,
+      note: "",
+    };
+    if (newTodo == "") return;
+    setData(
+      produce((draft) => {
+        // FYI unshift is slow for deep computer science/data structures reasons
+        // https://stackoverflow.com/questions/44031591/performance-of-array-push-vs-array-unshift
+        // You definitely don't need to understand all this now but eventually
+        // it will be good to know because a lot of interviewers ask about this
+        // kind of thing
+        draft[selected].todo.unshift(newObj);
+      })
+    );
+    setNewTodo("");
+    setSelected2(0);
+  };
+
+  return (
+    <div className="">
+      <TopicHeader
+        data={data}
+        selected={selected}
+        selected2={selected2}
+        setData={setData}
+        setSelected={setSelected}
+        setSelected2={setSelected2}
+      />
+      <div className="folderwindow">
+        <ul className="todo">
+          {data[selected].todo.map((todo, i) => {
+            return (
+              <TodoLi
+                toggleDone={() => {
+                  setData(
+                    produce((draft) => {
+                      const done = draft[selected].todo[selected2].done;
+                      draft[selected].todo[selected2].done = !done;
+                    })
+                  );
+                }}
+                todo={todo}
+                key={i}
+                index={i}
+                selected2={selected2}
+                setSelected2={setSelected2}
+              />
+            );
+          })}
+        </ul>
+        <div className="inputdiv">
+          <hr />
+          <input
+            type="text"
+            onChange={(e) => setNewTodo(e.target.value)}
+            value={newTodo}
+          ></input>{" "}
+          <button className="addtodo" onClick={addTodo}>
+            &#10000;
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FolderWindow;
+
+const TopicHeader: React.FC<SideProps> = ({
+  data,
+  selected,
+  setData,
+  setSelected,
+  setSelected2,
+}) => {
+  return (
+    <div className="topicheader">
+      {data[selected].category}
+      <RemoveList
+        setData={setData}
+        index={selected}
+        setSelected={setSelected}
+        setSelected2={setSelected2}
+        name={data[selected].category}
+      />
+    </div>
+  );
+};
+
+interface todoProps {
+  todo: Todo;
+  index: number;
+  setSelected2: Dispatch<SetStateAction<number>>;
+  selected2: number;
+  toggleDone: () => void;
+}
+
+const TodoLi = (props: todoProps) => {
+  // TODO move this to styled components or a class so this object doesn't get recreated every render
+  const selectedstyle: React.CSSProperties = {
+    backgroundColor: "rgba(116, 116, 231, 0.527)",
+    color: "white",
+  };
+  const doneStyle: React.CSSProperties = {
+    textDecoration: "line-through",
+  };
+
+  const { todo, index } = props;
+
+  const selected = index === props.selected2;
+  const done = todo.done;
+  return (
+    <li
+      key={index}
+      id={String(index)}
+      style={{ ...(selected ? selectedstyle : {}), ...(done ? doneStyle : {}) }}
+      onClick={() => props.setSelected2(index)}
+    >
+      <button className="check" onClick={props.toggleDone}>
+        {done ? "✅" : ""}
+      </button>
+      <span className="todoname">{todo.name}</span>
+    </li>
+  );
+};
+
+/*
+The above TodoLi component needs the following, I've just given it a line-through:
+
   const selectTodo = (e: any): void => {
     const parent = e.target.parentNode;
     const button = e.target;
@@ -51,96 +181,4 @@ const FolderWindow = (props: SideProps) => {
       parent.appendChild(deleteButton);
     }
   };
-  const selectTodo2 = (e: any) => {
-    setSelected2(Number(e.currentTarget.id));
-  };
-
-  const addTodo = () => {
-    const newObj: Todo = {
-      name: newTodo,
-      note: "",
-    };
-    if (newTodo == "") return;
-    setData(
-      produce((draft) => {
-        draft[selected].todo.unshift(newObj);
-      })
-    );
-    setNewTodo("");
-    setSelected2(0);
-  };
-  const selectedstyle = {
-    backgroundColor: "rgba(116, 116, 231, 0.527)",
-    color: "white",
-  };
-
-  const TopicHeader: React.FC = () => {
-    return (
-      <div className="topicheader">
-        {data[selected].category}
-        <RemoveList
-          setData={setData}
-          index={selected}
-          setSelected={setSelected}
-          setSelected2={setSelected2}
-          name={data[selected].category}
-        />
-      </div>
-    );
-  };
-
-  interface todoProps {
-    todo: Todo;
-    index: number;
-  }
-
-  const TodoLi = (props: todoProps) => {
-    const { todo, index } = props;
-    if (index === selected2) {
-      return (
-        <li
-          key={index}
-          id={String(index)}
-          style={selectedstyle}
-          onClick={selectTodo2}
-        >
-          <button className="check" onClick={selectTodo}></button>
-          <span className="todoname">{todo.name}</span>
-        </li>
-      );
-    } else {
-      return (
-        <li key={index} id={String(index)} onClick={selectTodo2}>
-          <button className="check" onClick={selectTodo}></button>
-          <span className="todoname">{todo.name}</span>
-        </li>
-      );
-    }
-  };
-
-  return (
-    <div className="">
-      <TopicHeader />
-      <div className="folderwindow">
-        <ul className="todo">
-          {data[selected].todo.map((todo, i) => {
-            return <TodoLi todo={todo} key={i} index={i} />;
-          })}
-        </ul>
-        <div className="inputdiv">
-          <hr />
-          <input
-            type="text"
-            onChange={(e) => setNewTodo(e.target.value)}
-            value={newTodo}
-          ></input>{" "}
-          <button className="addtodo" onClick={addTodo}>
-            &#10000;
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default FolderWindow;
+*/
