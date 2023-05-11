@@ -146,3 +146,7 @@ textarea:focus {
   background-color: rgba(116, 116, 231, 0.527);
   color: white;
 }
+
+.linethrough {
+  text-decoration: line-through;
+}

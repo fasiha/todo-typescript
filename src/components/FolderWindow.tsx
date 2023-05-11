@@ -61,7 +61,7 @@ const TodoLi = (props: todoProps) => {
           <button className="check" onClick={toggleDone}>
             &#10003;
           </button>
-          <span className="todoname">{todo.name}</span>
+          <span className="todoname linethrough">{todo.name}</span>
           <button className="deletebutton" onClick={deleteTodo}>
             &#128465;
           </button>
@@ -85,7 +85,7 @@ const TodoLi = (props: todoProps) => {
       return (
         <li key={index} id={String(index)} onClick={selectTodo2}>
           <button className="check" onClick={toggleDone}></button>
-          <span className="todoname">{todo.name}</span>
+          <span className="todoname lignthrough">{todo.name}</span>
           <button className="deletebutton" onClick={deleteTodo}>
             &#128465;
           </button>
